@@ -40,13 +40,9 @@ async function getProfile() {
     loading.value = false
   }
 }
-
-
-
-
 </script>
 
 <template>
   <ProfileHeading :username="session.user.email" />
-  <ToDoData />
+  <ToDoData :userid="session.user.id" />
 </template>
