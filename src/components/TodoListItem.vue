@@ -11,54 +11,52 @@
       <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Your Tasks!</h2>
       <p class="mt-2 text-lg leading-8 text-gray-600">Add your to-do items. Mark them as complete once finished.</p>
     </div>
-    <ul role="list" class="divide-y divide-gray-100" >
-    <li v-for="(todo, index) in allTodos" :key="index" class="flex justify-between gap-x-6 py-5">
-      <div class="flex min-w-0 gap-x-4">
-        <div class="min-w-0 flex-auto">
-          <p class="text-sm font-semibold leading-6 text-gray-900">{{ todo.task }}</p>
+    <ul role="list" class="mx-auto max-w-xl sm:mt-20 divide-y divide-gray-100">
+      <li v-for="(todo, index) in allTodos" :key="index" class="flex justify-between gap-x-6 py-5">
+        <div class="flex min-w-0 gap-x-4">
+          <div class="min-w-0 flex-auto">
+            <p class="text-sm font-semibold leading-6 text-gray-900">{{ todo.task }}</p>
+          </div>
         </div>
-      </div>
-      <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-        <button type="button"
-          class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-          <PencilIcon class="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-          Edit
-        </button>
-        <button type="button"
-          class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-          <TrashIcon class="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-          Delete
-        </button>
-      </div>
-    </li>
-  </ul>
-    <form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
-      <div class="mt-2.5 grid grid-cols-2 gap-x-8 gap-y-6">
+        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+          <button type="button"
+            class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            <PencilIcon class="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
+            Edit
+          </button>
+          <button type="button" @click="deleteTodo(todo)"
+            class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            <TrashIcon class="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
+            Delete
+          </button>
+        </div>
+      </li>
+    </ul>
+      <div class="mx-auto mt-16 max-w-xl sm:mt-20 grid grid-cols-2 gap-x-8 gap-y-6">
         <div>
-          <input v-model="task" placeholder="What do you need to?" type="text" name="first-name" id="first-name"
-            autocomplete="given-name"
+          <input v-model="task" placeholder="What do you need to?" type="text" name="task" id="task"
+            autocomplete="task-for-the-day"
             class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
         </div>
         <div>
-        <button type="button" @click="addTodo({ task, props })"
-          class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-          <PlusCircleIcon class="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-         Add
-        </button>
+          <button class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" type="button" @click="insertTask({ task, userid })"><PlusCircleIcon class="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />Add</button>
+        </div>
       </div>
-      </div>
-    </form>
   </div>
 </template>
 <script setup>
 import { ref } from 'vue'
-import { addTodo, fetchTodos } from '../utils/useTodos'
+import { addTodo, allTodos, fetchTodos, deleteTodo } from '../utils/useTodos'
 import {
   PlusCircleIcon,
   TrashIcon,
   PencilIcon,
 } from '@heroicons/vue/20/solid'
+await fetchTodos()
 const task = ref('')
-const allTodos = await fetchTodos()
-const props = defineProps(['userid'])
+async function insertTask(data) {
+  await addTodo(data)
+  task.value = ''
+}
+defineProps(['userid'])
 </script>

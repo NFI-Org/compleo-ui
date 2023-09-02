@@ -22,11 +22,10 @@
 <script>
 import UserInfo from "@/components/UserInfo.vue";
 import TodoListItem from "@/components/TodoListItem.vue";
-import TodoItemCreator from "@/components/TodoItemCreator.vue";
 
 export default {
   name: "HomeView",
-  components: { TodoListItem, TodoItemCreator, UserInfo },
+  components: { TodoListItem, UserInfo },
   computed: {
     getTodoList() {
       return this.$store.state.todos.todoList;

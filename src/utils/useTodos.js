@@ -1,34 +1,41 @@
 import { supabase } from '../lib/supabaseClient'
+import { ref } from 'vue'
+const allTodos = ref([])
 async function fetchTodos() {
   try {
     const { data: todos, error } = await supabase.from('todos').select('*').order('id')
+
     if (error) throw error
-    return todos
+
+    if (todos === null) {
+      allTodos.value = []
+      return
+    }
+    allTodos.value = todos
   } catch (error) {
     if (error instanceof Error) {
         alert(error.message)
       }
-    return null
   }
 }
 
-async function addTodo(tododata) {
-    if (tododata.task.length <= 3) {
-      alert('Please make your task a little more descriptive')
-      return
-    }
+async function addTodo(todo) {
     try {
-      const { data, error } = await supabase.from('todos').insert({ user_id: tododata.userid, task: tododata.task }).single()
-      if (error) throw error
-      return data
+      await supabase.from('todos').insert([{ user_id: todo.userid, task: todo.task }]).select()
+      fetchTodos()
     } catch (error) {
-      if (error instanceof Error) {
-        alert(error.message)
-      }
-      return null
+      console.error('error', error)
     }
   }
 
+async function deleteTodo(todo) {
+  try {
+    await supabase.from('todos').delete().eq('id', todo.id)
+    fetchTodos()
+  } catch (error) {
+    console.error('error', error)
+  }
+}
 /**
  * Targets a specific todo via its record id and updates the is_completed attribute.
  */
@@ -56,13 +63,6 @@ async function addTodo(tododata) {
 // /**
 //  *  Deletes a todo via its id
 //  */
-// async function deleteTodo(todo: Todo) {
-//   try {
-//     await supabase.from('todos').delete().eq('id', todo.id)
-//     console.log('deleted todo', todo.id)
-//   } catch (error) {
-//     console.error('error', error)
-//   }
-// }
 
-export { fetchTodos, addTodo }
+
+export { allTodos,fetchTodos, addTodo, deleteTodo }
