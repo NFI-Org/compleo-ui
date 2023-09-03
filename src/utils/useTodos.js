@@ -36,33 +36,19 @@ async function deleteTodo(todo) {
     console.error('error', error)
   }
 }
-/**
- * Targets a specific todo via its record id and updates the is_completed attribute.
- */
-// async function updateTaskCompletion(todo: Todo, isCompleted: boolean) {
-//   try {
-//     const { error } = await supabase
-//       .from('todos')
-//       .update({ is_complete: isCompleted })
-//       .eq('id', todo.id)
-//       .single()
 
-//     if (error) {
-//       alert(error.message)
-//       console.error('There was an error updating', error)
-//       return
-//     }
-
-//     console.log('Updated task', todo.id)
-//   } catch (err) {
-//     alert('Error')
-//     console.error('Unknown problem updating record', err)
-//   }
-// }
-
-// /**
-//  *  Deletes a todo via its id
-//  */
+async function completeTodo(todo, isCompleted) {
+  try {
+    await supabase
+      .from('todos')
+      .update({ is_complete: isCompleted })
+      .eq('id', todo.id)
+      .select()
+    fetchTodos()
+  } catch (error) {
+    console.error('error', error)
+  }
+}
 
 
-export { allTodos,fetchTodos, addTodo, deleteTodo }
+export { allTodos,fetchTodos, addTodo, deleteTodo, completeTodo }

@@ -33,10 +33,17 @@
           <div
             class="rounded-2xl bg-gray-50 text-center ring-1 ring-inset ring-gray-900/5">
             <div class="max-w-sm md:max-w-max px-6">
-              <span class="pt-6 pb-3 flex font-semibold text-gray-400 justify-start gap-x-2">{{ formatDate(todo.inserted_at) }}</span>
-              <p class="break-all pt-3 pb-20 text-3xl font-semibold text-gray-600">{{ todo.task }}</p>
+              <span class="pt-6 pb-3 flex font-semibold text-gray-400 justify-start gap-x-2" :class="{ 'line-through': todo.is_complete }">{{ formatDate(todo.inserted_at) }}</span>
+              <p class="break-all pt-3 pb-20 text-3xl font-semibold text-gray-600" :class="{ 'line-through': todo.is_complete }">{{ todo.task }}</p>
               <span class="pt-3 pb-6 flex items-baseline justify-start gap-x-2">
-               <button type="button"
+               <button v-if="todo.is_complete === true" 
+                    type="button"
+                    class="inline-flex items-center rounded-md bg-green-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" :class="{ 'line-through': todo.is_complete }" disabled>
+                    <CheckBadgeIcon class="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true"/>
+                    Completed
+                  </button>
+                  <button v-else type="button"
+                    @click="completeTodo(todo, true)"
                     class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                     <CheckCircleIcon class="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
                     Complete
@@ -58,11 +65,12 @@
 </template>
 <script setup>
 import { ref } from 'vue'
-import { addTodo, allTodos, fetchTodos, deleteTodo } from '../utils/useTodos'
+import { addTodo, allTodos, fetchTodos, deleteTodo, completeTodo } from '../utils/useTodos'
 import {
   PlusCircleIcon,
   TrashIcon,
   CheckCircleIcon,
+  CheckBadgeIcon
 } from '@heroicons/vue/20/solid'
 await fetchTodos()
 const task = ref('')
