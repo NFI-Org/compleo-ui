@@ -28,8 +28,8 @@ jobs:
           echo VITE_SUPABASE_URL="$VITE_SUPABASE_URL" >> .env
           echo VITE_SUPABASE_URL="$VITE_SUPABASE_ANON_KEY" >> .env
 
-          echo "cat .Renviron"
-          cat .Renviron
+          echo "cat .env"
+          cat .env
 
           echo "ls -a ."
           ls -a .
