@@ -11,13 +11,13 @@
       <p class="mt-2 text-lg leading-8 text-gray-600">Add your to-do items. Mark them as complete once finished.</p>
     </div>
 
-    <div class="mx-auto mt-16 sm:mt-20 grid grid-cols-3 gap-x-8 gap-y-6">
+    <div class="mx-auto max-w-max mt-16 sm:mt-20 grid grid-cols-3 gap-x-8 gap-y-6">
       <div class="col-span-2">
         <input v-model="task" placeholder="What do you need to do?" type="text" name="task" id="task"
           autocomplete="task-for-the-day"
           class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
       </div>
-      <div class="col-span-1">
+      <div class="max-w-max col-span-1">
         <button
           class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           type="button" @click="insertTask({ task, userid })">
@@ -26,15 +26,15 @@
       </div>
     </div>
 
-    <ul role="list" class="mx-auto max-w-xl sm:mt-20 divide-y divide-gray-100">
+    <ul role="list" class="grid auto-cols-auto auto-rows-auto grid-flow-row sm:mt-20">
       <li v-for="(todo, index) in allTodos" :key="index" class="flex justify-between gap-x-6 py-5">
 
-        <div class="w-full max-w-md p-2 lg:flex-shrink-0">
+        <div class="w-full max-w-sm md:max-w-max p-2 lg:flex-shrink-0">
           <div
             class="rounded-2xl bg-gray-50 text-center ring-1 ring-inset ring-gray-900/5">
-            <div class="max-w-xs px-6">
+            <div class="max-w-sm md:max-w-max px-6">
               <span class="pt-6 pb-3 flex font-semibold text-gray-400 justify-start gap-x-2">{{ formatDate(todo.inserted_at) }}</span>
-              <p class="pt-3 pb-20 text-3xl font-semibold text-gray-600">{{ todo.task }}</p>
+              <p class="break-all pt-3 pb-20 text-3xl font-semibold text-gray-600">{{ todo.task }}</p>
               <span class="pt-3 pb-6 flex items-baseline justify-start gap-x-2">
                <button type="button"
                     class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
@@ -43,7 +43,7 @@
                   </button>
                   <button type="button"
                     @click="deleteTodo(todo)"
-                    class="inline-flex items-center rounded-md  px-3 py-2 text-sm font-semibold border-2 border-indigo-600 text-black shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    class="inline-flex items-center rounded-md  px-3 py-2 text-sm font-semibold border-2 border-red-600 text-black shadow-sm hover:bg-red-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                     <TrashIcon class="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
                     Delete
                   </button>
