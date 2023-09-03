@@ -42,6 +42,7 @@ const { session } = toRefs(props)
 </script>
 
 <template>
+  
   <Suspense>
     <ProfileHeading :username="session.user.email" />
   </Suspense>
