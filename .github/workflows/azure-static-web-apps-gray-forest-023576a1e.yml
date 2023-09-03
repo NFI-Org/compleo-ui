@@ -28,14 +28,8 @@ jobs:
           echo VITE_SUPABASE_URL="$VITE_SUPABASE_URL" >> .env
           echo VITE_SUPABASE_URL="$VITE_SUPABASE_ANON_KEY" >> .env
 
-          echo "cat .env"
+          echo "Env File Contents:"
           cat .env
-
-          echo "ls -a ."
-          ls -a .
-
-          echo "ls -a ${{ github.workspace }}"
-          ls -a ${{ github.workspace }}
         shell: bash
       - name: Build And Deploy
         id: builddeploy
