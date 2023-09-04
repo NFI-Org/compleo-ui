@@ -1,0 +1,40 @@
+{
+  "background_color": "#000b4a",
+  "description": "A productivity app to maintain our day-to-day tasks or list everything that we have to do.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Compleo",
+  "orientation": "portrait",
+  "scope": "/",
+  "short_name": "compleo",
+  "start_url": "/",
+  "theme_color": "#f65c62",
+  "categories": [
+    "productivity",
+    "utilities"
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot/1.png"
+    },
+    {
+      "src": "/screenshot/2.png"
+    },
+    {
+      "src": "/screenshot/3.png"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/favicon.ico"
+    },
+    {
+      "src": "/favicon.ico",
+      "type": "image/x-icon"
+    }
+  ],
+  "shortcuts": [],
+  "id": "nfi-apps-001",
+  "lang": "en",
+  "prefer_related_applications": false
+}
