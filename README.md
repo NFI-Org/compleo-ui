@@ -1,41 +1,7 @@
-# compleo-ui
+## C O M P L E O
 
-This template should help get you started developing with Vue 3 in Vite.
+A productivity app to maintain our day-to-day tasks or list everything that we have to do.
 
-## Recommended IDE Setup
+# Check the app at
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+[C O M P L E O]([https://code.visualstudio.com/](https://gray-forest-023576a1e.3.azurestaticapps.net/)https://gray-forest-023576a1e.3.azurestaticapps.net/) 
