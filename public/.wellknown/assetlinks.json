@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "in.org.nfi.compleo",
+        "sha256_cert_fingerprints": ["9A:9F:C6:2E:7E:F6:CF:C5:30:34:E9:B3:DC:7C:41:E2:4D:24:2F:1E:6F:13:02:25:75:6B:19:85:09:38:E4:71"]
+      }
+    }]
